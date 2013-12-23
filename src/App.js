@@ -104,11 +104,10 @@
                                 },
                             },                
                             chartData: {
-                                //categories: verdictsGroups,
                                 categories: ["Pass","Blocked","Fail","Error","Inconclusive"],
                                 series: [ 
                                     {   
-                                        type: 'column',  //default is line
+                                        type: 'column',  
                                         name: 'Verdicts',
                                         data: [
                                             {name: 'Pass',
@@ -144,6 +143,7 @@
                             itemId: 'myChart',
                             chartConfig: {
                                 chart: {
+                                    type: 'pie' //two places where type can be specified, either one works. Another place is in ChartData.series
                                 },
                                 title: {
                                     text: 'TestCaseResults Verdict Counts',
@@ -158,6 +158,14 @@
                                      pie: {
                                         allowPointSelect: true,
                                         cursor: 'pointer',
+                                        point: {
+                                            events: {
+                                                click: function(event) {
+                                                    var options = this.options;
+                                                    alert(options.name + ' clicked');
+                                                }
+                                            }
+                                        },
                                         dataLabels: {
                                             enabled: true,
                                             color: '#000000',
@@ -167,10 +175,9 @@
                                 }
                             },            
                             chartData: {
-                                //categories: verdict, 
                                 series: [ 
                                     {   
-                                        type: 'pie',
+                                        //type: 'pie',
                                         name: 'Verdicts',
                                         data: [
                                             {name: 'Pass',
